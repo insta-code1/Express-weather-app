@@ -1,5 +1,6 @@
 const yargs = require('yargs');
 const geocode = require('./geocode/geocode');
+const weather = require('./weather/weather.js');
 
 const argv = yargs
   .options({
@@ -18,6 +19,14 @@ geocode.geocodeAddress(argv.address, (errorMessage, results) => {
   if (errorMessage){
     console.log(errorMessage);
   } else {
-    console.log(JSON.stringify(results, undefined, 2));
+    console.log(JSON.stringify(results.Address));
+    weather.getWeather(results.Longitude, results.Latitude,(errorMessage, weatherResults) => {
+      if (errorMessage){
+        console.log(errorMessage);
+      } else {
+        console.log(JSON.stringify(weatherResults, undefined, 2));
+        //To do add in template strings and ${} with more descriptive results
+      }
+    });
   }
 });
