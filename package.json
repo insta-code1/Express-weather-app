@@ -9,6 +9,7 @@
   "author": "instacode",
   "license": "ISC",
   "dependencies": {
+    "axios": "^0.15.3",
     "request": "^2.78.0",
     "yargs": "^4.8.1"
   }
